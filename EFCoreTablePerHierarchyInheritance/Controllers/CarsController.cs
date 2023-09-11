@@ -13,7 +13,6 @@ namespace EFCoreTablePerHierarchyInheritance.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         public IActionResult Index()
         {
@@ -39,6 +38,51 @@ namespace EFCoreTablePerHierarchyInheritance.Controllers
             }
 
             return View(carModel);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var car = GetCarById(id);
+            return View(car);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Car carModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Vehicles.Update(carModel);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(carModel);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var car = GetCarById(id);
+            return View(car);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeletePost(int id)
+        {
+            var car = GetCarById(id);
+            _context.Vehicles.Remove(car);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        private Car GetCarById(int id)
+        {
+            var car = _context.Vehicles.OfType<Car>().SingleOrDefault(x => x.Id == id);
+            return car;
         }
     }
 }
