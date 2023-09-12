@@ -15,7 +15,7 @@ TPH allows us to write our .NET entities in code as usual, using base and derive
 
 One table is used to represent all classes in the hierarchy. 
 
-A "discriminator" column is used to discriminate between differing types. When we try to insert a Car object in the database, EF Core will automatically set the Discriminator column value to Car. Similarly, for Motorcycle objecet the Discriminator column value will be Motorcycle. Data for all the model classes like Vehicle, Car and Motorcycle will saved in one single table. 
+A "discriminator" column is used to discriminate between differing types. When we try to insert a Car object in the database, EF Core will automatically set the Discriminator column value to Car. Similarly, for Motorcycle object the Discriminator column value will be Motorcycle. Data for all the model classes like Vehicle, Car and Motorcycle will be saved in one single table. 
 
 ![](https://i.imgur.com/SO8gXl4.png)
 
